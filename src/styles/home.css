@@ -8,7 +8,9 @@
       
         font-family: "Play";
  
-       
+       display: flex;
+       flex-direction: column;
+       gap:30px;
 }
 .homeMenu{
   background-color: #09203f;
@@ -35,7 +37,7 @@
 }
 .middleGrid{
     display: flex;
-
+   padding:30px;
     
 }
 
@@ -74,6 +76,10 @@
     padding:30px;
     
 }
+.middleBottomContent h3{
+    font-family: "Play";
+}
+
 .middleBottomContent button{
     border: none;
     padding: 10px 15px;
