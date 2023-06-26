@@ -1,7 +1,7 @@
 # Getting Started with Ziptv
 
 
-You can view this project  HTTP://[ZIPTV](http://ziptv.infinityfreeapp.com/).
+You can view this project  http://[ZIPTV](http://ziptv.infinityfreeapp.com/).
 
 
 
