@@ -17,7 +17,7 @@ import userRedux, {
 export const __getUserSecretIdWithRedux = async (dispatch,secretId) => {
       dispatch(getUserSecretIdStart());
       try{
-         const res = await axios.get(`https://m3u-serverdev.glitch.me/api/user/secretId?secret_id=${secretId}`)
+         const res = await axios.get(`https://m3u-server.onrender.com/api/user/secretId?secret_id=${secretId}`)
            dispatch(getUserSecretIdSuccess(res.data));         
       }catch(err){
         dispatch(getUserSecretIdFailure())
@@ -27,7 +27,7 @@ export const __getUserSecretIdWithRedux = async (dispatch,secretId) => {
 export const __getPlaylistBySecretIdWithRedux = async(dispatch,secretId) => {
     dispatch(getPlaylistStart());
     try{
-         const res = await axios.get('https://m3u-serverdev.glitch.me/api/m3u/playlists' + secretId);
+         const res = await axios.get('https://m3u-server.onrender.com/api/m3u/playlists' + secretId);
          dispatch(getPlaylistSucccess(res.data));
     }catch(err){
         dispatch(getPlaylistFailure());
