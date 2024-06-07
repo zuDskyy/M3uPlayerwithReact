@@ -7,7 +7,7 @@ const RequestMethods =  {
    listRequest : async (currentPlaylist) => {
    
  try{
-    const res =  await axios.get("https://m3u-serverdev.glitch.me/"+ currentPlaylist?.originalName )
+    const res =  await axios.get("https://m3u-server.onrender.com/"+ currentPlaylist?.originalName )
      return res.data.filter(i => i !== null)
   }catch(err){
     console.clear(err)
@@ -15,7 +15,7 @@ const RequestMethods =  {
 },
  _getlistRequest : async (secretId) => {
   try {
-     const res = await axios.get('https://m3u-serverdev.glitch.me/api/m3u/playlists/' + secretId)
+     const res = await axios.get('https://m3u-server.onrender.com/api/m3u/playlists/' + secretId)
        return res.data
   }catch(err){
       console.clear(err)
@@ -23,7 +23,7 @@ const RequestMethods =  {
  },
   _deletelistRequestById: async (id) => {
      try{
-       const res = await axios.delete("https://m3u-serverdev.glitch.me/api/delete/m3ufile/" + id)
+       const res = await axios.delete("https://m3u-server.onrender.com/api/delete/m3ufile/" + id)
        return res.data
      }catch(err){
       console.clear(err)
