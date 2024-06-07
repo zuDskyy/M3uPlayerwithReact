@@ -44,7 +44,7 @@ const AddM3uList = ({ setAddChannelOpen }) => {
 
       try {
         const res = await axios.post(
-          `https://m3u-serverdev.glitch.me/api/upload/m3ufile?secret_id=${user?.secretId}&list_name=${m3uFileName}`,
+          `https://m3u-server.onrender.com/api/upload/m3ufile?secret_id=${user?.secretId}&list_name=${m3uFileName}`,
           datafile
         );
         
