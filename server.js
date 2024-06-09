@@ -10,21 +10,17 @@ server.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-
-server.use('/proxy', createProxyMiddleware({
-    target: 'http://example.com', // Placeholder target, will be dynamically overwritten
+app.use(
+  '/proxy',
+  createProxyMiddleware({
+    target: 'http://s.only4.tv',
     changeOrigin: true,
-    pathRewrite: (path, req) => {
-      return ''; // Remove all path when forwarding request
+    secure: false, // This will allow you to access HTTP content
+    pathRewrite: {
+      '^/proxy': '', // remove /proxy from the request URL
     },
-    onProxyReq: (proxyReq, req, res) => {
-      const url = req.query.url; // Get the target URL from the query parameter
-      if (url) {
-        // Set the full URL for the proxy request
-        proxyReq.path = url;
-      }
-    }
-  }));
+  })
+);
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {

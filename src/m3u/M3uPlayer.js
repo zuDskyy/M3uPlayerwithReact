@@ -13,17 +13,19 @@ const M3uPlayer = () => {
 
   useEffect(() => {
     const videoData = m3uData?.find((item) => item.id == id);
-
     if (videoData) {
       const { title } = videoData;
+      const videoSrc = `/proxy${new URL(title).pathname}${new URL(title).search}`;
+
+
       var video = document.getElementById("video");
 
       if (Hls.isSupported()) {
         var hls = new Hls();
-        hls.loadSource(title.file);
+        hls.loadSource(videoSrc);
         hls.attachMedia(video);
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = title.file;
+        video.src = videoSrc;
       }
     }
   }, [filteredM3uList]);
