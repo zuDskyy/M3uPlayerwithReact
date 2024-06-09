@@ -20,10 +20,10 @@ const M3uPlayer = () => {
 
       if (Hls.isSupported()) {
         var hls = new Hls();
-        hls.loadSource(title.file);
+        hls.loadSource(`https://m3uplayerwithreact.onrender.com/proxy?url=${title.file}`);
         hls.attachMedia(video);
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = title.file;
+        video.src = `https://m3uplayerwithreact.onrender.com/proxy?url=${title.file}`;
       }
     }
   }, [filteredM3uList]);

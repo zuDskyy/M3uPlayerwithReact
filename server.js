@@ -11,6 +11,21 @@ server.get('/*', (req, res) => {
 });
 
 
+app.use('/proxy', createProxyMiddleware({
+    target: 'http://example.com', // Placeholder target, will be dynamically overwritten
+    changeOrigin: true,
+    pathRewrite: (path, req) => {
+      return ''; // Remove all path when forwarding request
+    },
+    onProxyReq: (proxyReq, req, res) => {
+      const url = req.query.url; // Get the target URL from the query parameter
+      if (url) {
+        // Set the full URL for the proxy request
+        proxyReq.path = url;
+      }
+    }
+  }));
+
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
