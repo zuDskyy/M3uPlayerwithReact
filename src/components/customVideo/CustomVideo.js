@@ -12,7 +12,15 @@ const CustomVideo = ({ ...props }) => {
     const video = videoRef.current;
     setPlayPause((prev) => !prev);
     if (video.paused) {
-      video.play();
+      var play = video.play();
+       if(play !== undefined) { 
+        play.then(() => {
+          console.log("video played");
+        })
+        play.catch((error) => {   
+          console.log(error); 
+        });
+      };
     } else {
       video.pause();
     }
