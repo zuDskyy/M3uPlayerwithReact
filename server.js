@@ -11,7 +11,7 @@ server.get('/*', (req, res) => {
 });
 
 
-app.use('/proxy', createProxyMiddleware({
+server.use('/proxy', createProxyMiddleware({
     target: 'http://example.com', // Placeholder target, will be dynamically overwritten
     changeOrigin: true,
     pathRewrite: (path, req) => {
