@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const server = express();
 
 server.use(express.static(path.join(__dirname,  'build')));
