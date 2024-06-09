@@ -15,7 +15,7 @@ const M3uPlayer = () => {
     const videoData = m3uData?.find((item) => item.id == id);
     if (videoData) {
       const { title } = videoData;
-      const videoSrc = `/proxy${new URL(title).pathname}${new URL(title).search}`;
+      const videoSrc = `/proxy${new URL(title.file).pathname}${new URL(title.file).search}`;
 
 
       var video = document.getElementById("video");
