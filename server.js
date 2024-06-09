@@ -10,7 +10,7 @@ server.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.use(
+server.use(
   '/proxy',
   createProxyMiddleware({
     target: 'http://s.only4.tv',
