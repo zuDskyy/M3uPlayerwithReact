@@ -3,6 +3,7 @@ import ChannelContext from "../context/useChannelContext";
 import { useParams } from "react-router-dom";
 import Hls from "hls.js";
 import CustomVideo from "../components/customVideo/CustomVideo";
+
 const M3uPlayer = () => {
   const params = useParams();
   const { id } = params;
@@ -15,15 +16,16 @@ const M3uPlayer = () => {
     const videoData = m3uData?.find((item) => item.id == id);
     if (videoData) {
       const { title } = videoData;
-      const videoSrc = `/proxy${new URL(title.file).pathname}${new URL(title.file).search}`;
-
-
+      const videoSrc = title.file;
       var video = document.getElementById("video");
 
       if (Hls.isSupported()) {
         var hls = new Hls();
         hls.loadSource(videoSrc);
         hls.attachMedia(video);
+        hls.on(Hls.Events.ERROR, function (event, data) {
+          console.error("HLS error", data);
+        });
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = videoSrc;
       }
@@ -32,7 +34,6 @@ const M3uPlayer = () => {
 
   return (
     <div style={{ overflowX: "hidden" }}>
-      
       {filteredM3uList?.map((item) => (
         <div
           key={item.id}
@@ -47,11 +48,7 @@ const M3uPlayer = () => {
             {item.tvname}
           </h3>
           <div style={{ margin: "0 auto " }}>
-            {/* <Player   qualityLevels={false}  hlsQualitySelector={false}  src={item.title.file} /> */}
-            <CustomVideo
-              id="video"
-                 
-            ></CustomVideo>
+            <CustomVideo id="video" />
           </div>
         </div>
       ))}
@@ -63,10 +60,10 @@ const M3uPlayer = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color:'white',
+            color: "white",
           }}
         >
-         {(" Please select a channel from the playlist").toUpperCase()}
+          {("Please select a channel from the playlist").toUpperCase()}
         </span>
       ) : null}
     </div>
