@@ -1,23 +1,23 @@
-import axios  from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const ListRequest = (req) => {
-    const  [listdata , setListdata ] = useState([]);
-    const [error ,setError] = useState([]);
+  const [listdata, setListdata] = useState([]);
+  const [error, setError] = useState([]);
   useEffect(() => {
-     try{
-    const listRequest = axios.get(req)
-    .then((data) =>  setListdata(data.data))
-    
-    listRequest()
-  }catch(err){
-    setError(err)
-  }
+    try {
+      const listRequest = axios.get(req)
+        .then((data) => setListdata(data.data))
 
-  
+      listRequest()
+    } catch (err) {
+      setError(err)
+    }
+
+
   }, [req]);
-  return {listdata, error}
-  
+  return { listdata, error }
+
 };
 
 

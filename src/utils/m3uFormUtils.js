@@ -3,7 +3,7 @@ import { listRequest } from "./requestMethodUtils";
 export const m3uParserByRegEx = async (currentPlaylist) => {
   try {
     const listdata = await listRequest(currentPlaylist);
-    console.log(listdata);
+    console.log("sdaada", listdata);
 
     const data = listdata.flatMap((item, index) => {
       const { title } = item;

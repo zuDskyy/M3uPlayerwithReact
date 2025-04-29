@@ -51,8 +51,8 @@ const CustomVideo = ({ ...props }) => {
 
   const turnOnLiveMode = () => {
     if (videoRef.current) {
-      videoRef.current.currentTime = videoRef.current.duration; // Set the current time to the end of the video
-      videoRef.current.play(); // Start playing the video from the latest available time
+      videoRef.current.currentTime = videoRef.current.duration;
+      videoRef.current.play();
     }
   };
 
@@ -64,25 +64,19 @@ const CustomVideo = ({ ...props }) => {
   return (
     <div className="video-container">
       <video ref={videoRef} {...props} className="video-player" onClick={togglePlayPause} />
+      
       <div className="controls">
-        <div className="control-button" onClick={togglePlayPause}>
-          {playpause && (
-            <img
-              width={40}
-              height={40}
-              src={ASSETS + "/pause.png"}
-              alt=""
-            />
-          )}
-          {!playpause && (
-            <img
-              width={40}
-              height={40}
-              src={ASSETS + "/play.png"}
-              alt=""
-            />
-          )}
+        {/* Play/Pause Button */}
+        <div className="control-button play-pause" onClick={togglePlayPause}>
+          <img
+            width={40}
+            height={40}
+            src={ASSETS + (playpause ? "/pause.png" : "/play.png")}
+            alt={playpause ? "Pause" : "Play"}
+          />
         </div>
+
+        {/* Volume Control */}
         <input
           type="range"
           min="0"
@@ -90,12 +84,18 @@ const CustomVideo = ({ ...props }) => {
           step="0.1"
           defaultValue="1"
           onChange={(e) => changeVolume(e.target.value)}
+          className="volume-slider"
         />
-        <div onClick={turnOnLiveMode} style={{ display: 'flex', alignItems: 'center' }} className="control-button">
-          <img width={40} height={40} src={ASSETS + "/livestream.png"} alt="" />Live
+
+        {/* Live Mode Button */}
+        <div onClick={turnOnLiveMode} className="control-button live">
+          <img width={40} height={40} src={ASSETS + "/livestream.png"} alt="Live" />
+          <span>Live</span>
         </div>
-        <div className="control-button" onClick={toggleFullScreen}>
-          <img width={40} height={40} src={ASSETS + "/fullscreen.png"} alt="" />
+
+        {/* Fullscreen Button */}
+        <div className="control-button fullscreen" onClick={toggleFullScreen}>
+          <img width={40} height={40} src={ASSETS + "/fullscreen.png"} alt="Fullscreen" />
         </div>
       </div>
     </div>

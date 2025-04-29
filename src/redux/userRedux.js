@@ -4,12 +4,13 @@ const userSlice = createSlice({
   name: "userSecretId",
   initialState: {
     userSecretId: null,
-    currentPlaylist: null,
+    currentPlaylist: { originalName: "test.m3u", listname: "test" },
     playlist: [],
     isFetching: false,
     error: false,
   },
   reducers: {
+
     getUserSecretIdStart: (state) => {
       state.isFetching = true;
     },
@@ -45,9 +46,9 @@ const userSlice = createSlice({
     },
     deleteCurrentPlaylistSucccess: (state) => {
       state.isFetching = false;
-      state.currentPlaylist =  null;
+      state.currentPlaylist = null;
     },
-    
+
   },
 });
 
